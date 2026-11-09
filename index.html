@@ -1,90 +1,115 @@
+
 <!DOCTYPE html>
-<?xml encoding="utf-8" ?><html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="images/favicon.3b04c.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/all.min.d58da.css">
-    <link rel="stylesheet" type="text/css" href="css/style.7a958.css">
-    <link rel="stylesheet" type="text/css" href="css/style.dd874.css">
-    <title>DUI React Boilerplate</title>
-    <script type="module" crossorigin src="js/index.b1fe5a1d.973f3.js"></script>
-    <link rel="stylesheet" href="css/index.b6aec470.973f3.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
+<?xml encoding="utf-8" ?>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.3b04c.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/all.min.d58da.css">
+  <link rel="stylesheet" href="css/style.7a958.css">
+  <link rel="stylesheet" href="css/style.dd874.css">
+  <title>DUI React Boilerplate</title>
+  <script type="module" crossorigin src="js/index.b1fe5a1d.973f3.js"></script>
+  <link rel="stylesheet" href="css/index.b6aec470.973f3.css">
+</head>
+<body>
+  <div id="root"></div>
 
-    <script>
-      (function () {
-        const style = document.createElement("style");
-        style.textContent = `
-          .ChristmasHat {
-            position: absolute;
-            top: -70px;
-            left: 35%;
-            width: 90%;
-            height: auto;
-            max-width: none;
-            z-index: 10000;
-            pointer-events: none;
-            user-select: none;
-            transform: none;
-            filter: drop-shadow(0 5px 8px rgba(0, 0, 0, .55));
-          }
-          #presko-christmas-snow {
-            position: fixed; inset: 0; z-index: 9998; overflow: hidden;
-            pointer-events: none;
-          }
-          #presko-christmas-snow .snowflake {
-            position: absolute; top: -24px; color: #fff; opacity: .9;
-            text-shadow: 0 0 5px #bdeaff; user-select: none;
-            animation: presko-snow-fall linear infinite;
-          }
-          @keyframes presko-snow-fall {
-            0% { transform: translate3d(0,-5vh,0) rotate(0deg); }
-            100% { transform: translate3d(35px,110vh,0) rotate(360deg); }
-          }
-        `;
-        document.head.appendChild(style);
+  <script>
+    (function () {
+      const style = document.createElement("style");
+      style.textContent = `
+        .ChristmasHat {
+          position: absolute;
+          top: -75px;
+          left: 35%;
+          width: 90%;
+          height: auto;
+          max-width: none;
+          z-index: 10000;
+          pointer-events: none;
+          user-select: none;
+          transform: none;
+          filter: drop-shadow(0 5px 8px rgba(0, 0, 0, .55));
+        }
 
-        let snow = null;
-        function updateChristmasTheme() {
-          const menu = document.querySelector(".VWrapper");
-          if (menu) {
-            if (!menu.querySelector(":scope > .ChristmasHat")) {
-              const hat = document.createElement("img");
-              hat.className = "ChristmasHat";
-              hat.src = "images/presko-santa-hat.png";
-              hat.alt = "Santa hat";
-              menu.appendChild(hat);
-            }
-            if (!snow) {
-              snow = document.createElement("div");
-              snow.id = "presko-christmas-snow";
-              const symbols = ["❄", "❅", "❆", "✻"];
-              for (let i = 0; i < 42; i++) {
-                const flake = document.createElement("span");
-                flake.className = "snowflake";
-                flake.textContent = symbols[i % symbols.length];
-                flake.style.left = (Math.random() * 100) + "vw";
-                flake.style.fontSize = (9 + Math.random() * 13) + "px";
-                flake.style.animationDuration = (6 + Math.random() * 9) + "s";
-                flake.style.animationDelay = (-Math.random() * 12) + "s";
-                snow.appendChild(flake);
-              }
-              document.body.appendChild(snow);
-            }
-          } else if (snow) {
-            snow.remove();
-            snow = null;
+        #presko-christmas-snow {
+          position: fixed;
+          inset: 0;
+          z-index: 9998;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        #presko-christmas-snow .snowflake {
+          position: absolute;
+          top: -24px;
+          color: #fff;
+          opacity: .9;
+          text-shadow: 0 0 5px #bdeaff;
+          user-select: none;
+          animation: presko-snow-fall linear infinite;
+        }
+
+        @keyframes presko-snow-fall {
+          0% {
+            transform: translate3d(0,-5vh,0) rotate(0deg);
+          }
+          100% {
+            transform: translate3d(35px,110vh,0) rotate(360deg);
           }
         }
-        new MutationObserver(updateChristmasTheme).observe(document.documentElement, {
-          childList: true, subtree: true
-        });
-        updateChristmasTheme();
-      })();
-    </script>
-  </body>
+      `;
+
+      document.head.appendChild(style);
+
+      let snow = null;
+
+      function updateChristmasTheme() {
+        const menu = document.querySelector(".VWrapper");
+
+        if (menu) {
+          if (!menu.querySelector(":scope > .ChristmasHat")) {
+            const hat = document.createElement("img");
+            hat.className = "ChristmasHat";
+            hat.src = "images/presko-santa-hat.png";
+            hat.alt = "Santa hat";
+            menu.appendChild(hat);
+          }
+
+          if (!snow) {
+            snow = document.createElement("div");
+            snow.id = "presko-christmas-snow";
+
+            const symbols = ["❄", "❅", "❆", "✻"];
+
+            for (let i = 0; i < 42; i++) {
+              const flake = document.createElement("span");
+              flake.className = "snowflake";
+              flake.textContent = symbols[i % symbols.length];
+              flake.style.left = (Math.random() * 100) + "vw";
+              flake.style.fontSize = (9 + Math.random() * 13) + "px";
+              flake.style.animationDuration = (6 + Math.random() * 9) + "s";
+              flake.style.animationDelay = (-Math.random() * 12) + "s";
+              snow.appendChild(flake);
+            }
+
+            document.body.appendChild(snow);
+          }
+        } else if (snow) {
+          snow.remove();
+          snow = null;
+        }
+      }
+
+      new MutationObserver(updateChristmasTheme).observe(
+        document.documentElement,
+        { childList: true, subtree: true }
+      );
+
+      updateChristmasTheme();
+    })();
+  </script>
+</body>
 </html>
