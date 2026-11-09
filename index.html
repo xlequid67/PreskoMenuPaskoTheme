@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.3b04c.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.d58da.css">
+    <link rel="stylesheet" type="text/css" href="css/style.7a958.css">
+    <link rel="stylesheet" type="text/css" href="css/style.dd874.css">
+    <title>DUI React Boilerplate</title>
+    <script type="module" crossorigin src="js/index.b1fe5a1d.973f3.js"></script>
+    <link rel="stylesheet" href="css/index.b6aec470.973f3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+
+    <script>
+      (function () {
+        const style = document.createElement("style");
+        style.textContent = `
+          .ChristmasHat {
+            position: absolute; top: -2px; right: 12px; width: 34px; height: 28px;
+            z-index: 20; pointer-events: none; transform: rotate(18deg);
+          }
+          .ChristmasHat .HatCap {
+            position: absolute; width: 23px; height: 17px; left: 5px; top: 2px;
+            background: linear-gradient(135deg, #ff4242, #b90018);
+            border-radius: 85% 12% 0 0; transform: skew(-12deg) rotate(-12deg);
+            box-shadow: 0 1px 3px #0008;
+          }
+          .ChristmasHat .HatBrim {
+            position: absolute; left: 2px; top: 16px; width: 29px; height: 7px;
+            background: #fff; border-radius: 8px; box-shadow: 0 1px 2px #0008;
+          }
+          .ChristmasHat .HatPom {
+            position: absolute; left: 23px; top: 0; width: 8px; height: 8px;
+            background: #fff; border-radius: 50%; box-shadow: 0 0 3px #fff;
+          }
+          #presko-christmas-snow {
+            position: fixed; inset: 0; z-index: 9998; overflow: hidden;
+            pointer-events: none;
+          }
+          #presko-christmas-snow .snowflake {
+            position: absolute; top: -24px; color: #fff; opacity: .9;
+            text-shadow: 0 0 5px #bdeaff; user-select: none;
+            animation: presko-snow-fall linear infinite;
+          }
+          @keyframes presko-snow-fall {
+            0% { transform: translate3d(0,-5vh,0) rotate(0deg); }
+            100% { transform: translate3d(35px,110vh,0) rotate(360deg); }
+          }
+        `;
+        document.head.appendChild(style);
+
+        let snow = null;
+        function updateChristmasTheme() {
+          const menu = document.querySelector(".VWrapper");
+          const banner = document.querySelector(".VWrapper .VBanner");
+          if (menu && banner) {
+            if (!banner.querySelector(".ChristmasHat")) {
+              const hat = document.createElement("div");
+              hat.className = "ChristmasHat";
+              hat.innerHTML = '<span class="HatCap"></span><span class="HatBrim"></span><span class="HatPom"></span>';
+              banner.appendChild(hat);
+            }
+            if (!snow) {
+              snow = document.createElement("div");
+              snow.id = "presko-christmas-snow";
+              const symbols = ["❄", "❅", "❆", "✻"];
+              for (let i = 0; i < 42; i++) {
+                const flake = document.createElement("span");
+                flake.className = "snowflake";
+                flake.textContent = symbols[i % symbols.length];
+                flake.style.left = (Math.random() * 100) + "vw";
+                flake.style.fontSize = (9 + Math.random() * 13) + "px";
+                flake.style.animationDuration = (6 + Math.random() * 9) + "s";
+                flake.style.animationDelay = (-Math.random() * 12) + "s";
+                snow.appendChild(flake);
+              }
+              document.body.appendChild(snow);
+            }
+          } else if (snow) {
+            snow.remove();
+            snow = null;
+          }
+        }
+        new MutationObserver(updateChristmasTheme).observe(document.documentElement, {
+          childList: true, subtree: true
+        });
+        updateChristmasTheme();
+      })();
+    </script>
+  </body>
+</html>
