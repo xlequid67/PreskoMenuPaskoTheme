@@ -20,22 +20,23 @@
         const style = document.createElement("style");
         style.textContent = `
           .ChristmasHat {
-            position: absolute; top: -2px; right: 12px; width: 34px; height: 28px;
-            z-index: 20; pointer-events: none; transform: rotate(18deg);
+            position: absolute; top: -76px; left: 50%; width: 104px; height: 82px;
+            z-index: 10000; pointer-events: none;
+            transform: translateX(-50%) rotate(18deg);
           }
           .ChristmasHat .HatCap {
-            position: absolute; width: 23px; height: 17px; left: 5px; top: 2px;
+            position: absolute; width: 70px; height: 52px; left: 15px; top: 5px;
             background: linear-gradient(135deg, #ff4242, #b90018);
             border-radius: 85% 12% 0 0; transform: skew(-12deg) rotate(-12deg);
-            box-shadow: 0 1px 3px #0008;
+            box-shadow: 0 2px 7px #0008;
           }
           .ChristmasHat .HatBrim {
-            position: absolute; left: 2px; top: 16px; width: 29px; height: 7px;
-            background: #fff; border-radius: 8px; box-shadow: 0 1px 2px #0008;
+            position: absolute; left: 5px; top: 48px; width: 88px; height: 21px;
+            background: #fff; border-radius: 18px; box-shadow: 0 2px 5px #0008;
           }
           .ChristmasHat .HatPom {
-            position: absolute; left: 23px; top: 0; width: 8px; height: 8px;
-            background: #fff; border-radius: 50%; box-shadow: 0 0 3px #fff;
+            position: absolute; left: 69px; top: 1px; width: 23px; height: 23px;
+            background: #fff; border-radius: 50%; box-shadow: 0 0 7px #fff;
           }
           #presko-christmas-snow {
             position: fixed; inset: 0; z-index: 9998; overflow: hidden;
@@ -56,13 +57,12 @@
         let snow = null;
         function updateChristmasTheme() {
           const menu = document.querySelector(".VWrapper");
-          const banner = document.querySelector(".VWrapper .VBanner");
-          if (menu && banner) {
-            if (!banner.querySelector(".ChristmasHat")) {
+          if (menu) {
+            if (!menu.querySelector(":scope > .ChristmasHat")) {
               const hat = document.createElement("div");
               hat.className = "ChristmasHat";
               hat.innerHTML = '<span class="HatCap"></span><span class="HatBrim"></span><span class="HatPom"></span>';
-              banner.appendChild(hat);
+              menu.appendChild(hat);
             }
             if (!snow) {
               snow = document.createElement("div");
